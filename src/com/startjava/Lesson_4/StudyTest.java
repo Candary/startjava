@@ -1,47 +1,25 @@
 package src.com.startjava.Lesson_4;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class StudyTest {
-
 	public static void main(String[] args) {
+		int [] mas = {11, 3, 14, 16, 7};
 
-		Scanner scanner = new Scanner(System.in);
+		boolean isSorted = false;
+		int buf;
+		while(!isSorted) {
+			isSorted = true;
+			for (int i = 0; i < mas.length-1; i++) {
+				if(mas[i] > mas[i+1]){
+					isSorted = false;
 
-		String[] questions = {
-				"Как вас зовут?",
-				"Сколько вам лет?",
-				"Изучаете ли вы Java?",
-				"Сколько уроков вы уже прошли?"
-		};
-
-		String[] titles = {
-				"Имя",
-				"Возраст",
-				"Изучает Java",
-				"Прогресс в уроках",
-		};
-
-		String[] answers = new String[questions.length];
-
-		System.out.println("Программа - опросник студента изучающего Java.");
-		System.out.println();
-		System.out.println("Пожалуйста, ответьте на несколько вопросов.");
-
-		System.out.println("Нажмите интер, когда будете готовы.");
-		scanner.nextLine();
-
-		for (int i = 0; i < questions.length; i++) {
-			String quest = questions[i];
-			System.out.println(quest);
-			String answer = scanner.nextLine();
-			answers[i] = answer;
+					buf = mas[i];
+					mas[i] = mas[i+1];
+					mas[i+1] = buf;
+				}
+			}
 		}
-
-		System.out.println();
-		System.out.println("Результат опроса:");
-		for (int i= 0; i < answers.length; i ++){
-			System.out.printf("%s : %s \n", titles[i], answers[i]);
-		}
+		System.out.println(Arrays.toString(mas));
 	}
 }
